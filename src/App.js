@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import InputImage from "./components/InputImage";
+import Uploading from "./components/Uploading";
+import Success from "./components/Success";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="app_container">
+        {!isLoading && !isLoaded && (
+          <InputImage load={setIsLoading} loaded={setIsLoaded} />
+        )}
+        {isLoading && !isLoaded && <Uploading />}
+        {!isLoading && isLoaded && <Success />}
+      </div>
+      <p className="footer">Created by adrianjose01 - DevChallenge.io</p>
+    </>
   );
 }
 
