@@ -3,7 +3,7 @@ import testImage from "../assets/R.jpeg";
 import successImage from "../assets/checked.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const Success = () => {
+const Success = (props) => {
   return (
     <div className="success_container">
       <img src={successImage} alt="success" width="50" />
@@ -14,9 +14,12 @@ const Success = () => {
           readOnly
           className="image_url_input"
           type="text"
-          value={testImage}
+          value={props.imageUrl}
         />
-        <CopyToClipboard text={testImage} onCopy={() => console.log("Copied")}>
+        <CopyToClipboard
+          text={props.imageUrl}
+          onCopy={() => console.log("Copied")}
+        >
           <button className="btn_copy">Copy Link</button>
         </CopyToClipboard>
       </div>

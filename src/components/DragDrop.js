@@ -6,15 +6,7 @@ const fileTypes = ["JPG", "PNG", "GIF"];
 
 const DragDrop = (props) => {
   const handleChange = (file) => {
-    fetch("http://localhost:8000/api/image", {
-      method: "POST",
-      body: JSON.stringify({ image: file }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-    props.load();
+    props.uploadImg(file);
   };
 
   return (
