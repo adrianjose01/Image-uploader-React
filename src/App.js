@@ -14,7 +14,11 @@ function App() {
     formData.append("file", img);
     axios
       .post("http://localhost:4000/upload-image", formData)
-      .then((res) => setImageUrl(res.data.imagePath));
+      .then((res) => setImageUrl(res.data.imagePath))
+      .catch((err) => {
+        alert("Something went wrong!");
+        window.location.reload();
+      });
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
