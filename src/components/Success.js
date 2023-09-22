@@ -8,7 +8,7 @@ const Success = (props) => {
     <div className="success_container">
       <img src={successImage} alt="success" width="50" />
       <h3>Uploaded Successfully!</h3>
-      <img className="uploaded_image" src={testImage} alt="test" />
+      <img className="uploaded_image" src={props.imageUrl} alt="test" />
       <div className="copy_image_container">
         <input
           readOnly
