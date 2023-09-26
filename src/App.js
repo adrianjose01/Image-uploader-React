@@ -2,7 +2,6 @@ import { useState } from "react";
 import InputImage from "./components/InputImage";
 import Uploading from "./components/Uploading";
 import Success from "./components/Success";
-import axios from "axios";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,13 +11,7 @@ function App() {
   const handleImageUpload = (img) => {
     const formData = new FormData();
     formData.append("image", img);
-    axios
-      .post("http://localhost:4000/upload-image", formData)
-      .then((res) => setImageUrl(res.data.imagePath))
-      .catch((err) => {
-        alert("Something went wrong!");
-        window.location.reload();
-      });
+    setImageUrl(URL.createObjectURL(img));
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
