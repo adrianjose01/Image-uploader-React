@@ -31,7 +31,10 @@ function App() {
         {isLoading && !isLoaded && <Uploading />}
         {!isLoading && isLoaded && <Success imageUrl={imageUrl} />}
       </div>
-      <p className="footer">Created by adrianjose01 - DevChallenge.io</p>
+      <p className="footer">
+        Created by <a href="https://github.com/adrianjose01">adrianjose01</a> -
+        DevChallenge.io
+      </p>
     </>
   );
 }
