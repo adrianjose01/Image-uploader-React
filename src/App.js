@@ -11,7 +11,7 @@ function App() {
 
   const handleImageUpload = (img) => {
     const formData = new FormData();
-    formData.append("file", img);
+    formData.append("image", img);
     axios
       .post("http://localhost:4000/upload-image", formData)
       .then((res) => setImageUrl(res.data.imagePath))
