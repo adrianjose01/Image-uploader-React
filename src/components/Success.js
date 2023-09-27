@@ -1,5 +1,4 @@
 import React from "react";
-import testImage from "../assets/R.jpeg";
 import successImage from "../assets/checked.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 

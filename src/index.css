@@ -161,19 +161,19 @@ input[type="file"] {
   .success_container,
   .loading_container {
     max-width: 25rem;
+    box-shadow: none;
+    margin-top: -10rem;
   }
 
   .uploaded_image {
-    max-width: 20rem;
+    max-width: 13rem;
+  }
+
+  .copy_image_container {
+    padding: 1rem;
   }
 
   .btn_copy {
-    position: absolute;
-    bottom: 8rem;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 10rem;
+    width: 8rem;
   }
 }

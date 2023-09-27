@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import DragDrop from "./DragDrop";
-import axios from "axios";
 
 const InputImage = (props) => {
   const imageInputRef = useRef();

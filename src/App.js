@@ -2,6 +2,8 @@ import { useState } from "react";
 import InputImage from "./components/InputImage";
 import Uploading from "./components/Uploading";
 import Success from "./components/Success";
+import storage from "./FirebaseConfig";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,9 +11,20 @@ function App() {
   const [imageUrl, setImageUrl] = useState();
 
   const handleImageUpload = (img) => {
-    const formData = new FormData();
-    formData.append("image", img);
-    setImageUrl(URL.createObjectURL(img));
+    const imageName = (Math.random() * 10).toString().replace(".", "");
+    const imageFirabaseRef = ref(storage, imageName);
+
+    // FIREBASE IMAGE UPLOADING
+    uploadBytes(imageFirabaseRef, img)
+      .then(() => {
+        getDownloadURL(ref(ref(storage, imageName))).then((url) => {
+          setImageUrl(url);
+        });
+      })
+      .catch((err) => {
+        alert("Something went wrong");
+      });
+
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
