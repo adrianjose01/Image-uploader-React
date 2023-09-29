@@ -10,26 +10,22 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageUrl, setImageUrl] = useState();
 
-  const handleImageUpload = (img) => {
+  const handleImageUpload = async (img) => {
     const imageName = (Math.random() * 10).toString().replace(".", "");
     const imageFirabaseRef = ref(storage, imageName);
-
-    // FIREBASE IMAGE UPLOADING
-    uploadBytes(imageFirabaseRef, img)
-      .then(() => {
-        getDownloadURL(ref(ref(storage, imageName))).then((url) => {
-          setImageUrl(url);
-        });
-      })
-      .catch((err) => {
-        alert("Something went wrong");
-      });
-
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsLoaded(true);
-    }, 3000);
+    try {
+      // FIREBASE IMAGE UPLOADING
+      setIsLoading(true);
+      await uploadBytes(imageFirabaseRef, img);
+      const url = await getDownloadURL(ref(imageFirabaseRef));
+      setImageUrl(url);
+      setTimeout(() => {
+        setIsLoading(false);
+        setIsLoaded(true);
+      }, 3000);
+    } catch (err) {
+      alert("Something went Wrong" + err);
+    }
   };
   return (
     <>
